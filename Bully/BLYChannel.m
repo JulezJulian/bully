@@ -42,7 +42,7 @@
 	NSDictionary *dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:
 								self.name, @"channel",
 								nil];
-	[self.client _sendEvent:@"pusher:unsubscribe" dictionary:dictionary];
+	[self.client _sendEvent:@"socky:unsubscribe" dictionary:dictionary];
 	[self.client _removeChannel:self];
 }
 
@@ -53,6 +53,7 @@
 
 - (void)subscribe {
 	if ([self isPrivate]) {
+        
 		if (!self.client.socketID) {
 			return;
 		}
@@ -62,7 +63,7 @@
 		}
 		return;
 	}
-
+    
 	[self subscribeWithAuthentication:nil];
 }
 
@@ -78,14 +79,14 @@
 					  self.name, @"channel",
 					  nil];
 	}
-	[self.client _sendEvent:@"pusher:subscribe" dictionary:dictionary];
+	[self.client _sendEvent:@"socky:subscribe" dictionary:dictionary];
 }
 
 
 - (NSDictionary *)authenticationParameters {
 	return [[NSDictionary alloc] initWithObjectsAndKeys:
-			self.name, @"channel_name",
-			self.client.socketID, @"socket_id",
+			self.name, @"channel",
+			self.client.socketID, @"connection_id",
 			nil];
 }
 

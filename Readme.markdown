@@ -1,6 +1,10 @@
 # Bully
 
-Bully is a simple [Pusher](http://pusher.com) Objective-C client with some neat stuff.
+This fork of [Bully](https://github.com/samsoffes/bully) is a simple, more generic Objective-C Websocket client. Unlike the original Bully, this fork doesen't use [Pusher](http://pusher.com/) credentials to connect to a Websocket, but an URL that can point to any server.
+
+It was changed to work together with the [Socky](https://github.com/socky) [Server](https://github.com/socky/socky-server-ruby), a collection of Tools to use Websockets with Ruby (on Rails).
+
+Getting this client to work with other Websocket-Servers should be easy if they work similar to how [Pusher](http://pusher.com) works.
 
 ## Neat Stuff
 
@@ -25,7 +29,7 @@ Simple as that.
 #### Creating a client
 
 ``` objective-c
-BLYClient *client = [[BLYClient alloc] initWithAppKey:@"YOUR_PUSHER_KEY" delegate:self];
+BLYClient *client = [[BLYClient alloc] initWithURL: [NSURL URLWithString: @"ws://ws.example.com:3001/websocket/application_name"] delegate: self];
 ```
 
 It is recommended that you set your client to an instance variable so it stays around and keeps its connection to Pusher open.
@@ -77,7 +81,7 @@ This is a bit tedious since Apple doesn't allow for iOS frameworks (without hack
 
     $ cd rootOfYourGitRepo
     $ git submodule add https://github.com/samsoffes/bully.git Vendor/Bully
-    $ git submodule update --init --recursive 
+    $ git submodule update --init --recursive
 
 2. Add `Vendor/Bully/Bully.xcodeproj` to your Xcode project.
 
@@ -111,4 +115,4 @@ Now run `pod install` to install the dependency.
 
 Bully is released under the [MIT license](https://github.com/samsoffes/bully/blob/master/LICENSE), so do whatever you want to it.
 
-Bully uses [SocketRocket](https://github.com/square/SocketRocket) by [Square](https://github.com/square), which is fantastic. Thanks to [Pusher](http://pusher.com) for being awesome. 
+Bully uses [SocketRocket](https://github.com/square/SocketRocket) by [Square](https://github.com/square), which is fantastic. Thanks to [Pusher](http://pusher.com) for being awesome.

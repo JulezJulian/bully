@@ -15,10 +15,11 @@
 
 @property (nonatomic, strong, readonly) NSString *socketID;
 @property (nonatomic, weak, readonly) id<BLYClientDelegate> delegate;
+@property (nonatomic, strong, readonly) NSURL *url;
 
 + (NSString *)version;
 
-- (id)initWithAppKey:(NSString *)appKey delegate:(id<BLYClientDelegate>)delegate;
+- (id)initWithURL: (NSURL *)url delegate:(id<BLYClientDelegate>)delegate;
 
 - (BLYChannel *)subscribeToChannelWithName:(NSString *)channelName;
 - (BLYChannel *)subscribeToChannelWithName:(NSString *)channelName authenticationBlock:(BLYChannelAuthenticationBlock)authenticationBlock;
@@ -37,5 +38,4 @@
 - (void)bullyClientDidConnect:(BLYClient *)client;
 - (void)bullyClient:(BLYClient *)client didReceiveError:(NSError *)error;
 - (void)bullyClientDidDisconnect:(BLYClient *)client;
-
 @end

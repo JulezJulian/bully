@@ -15,6 +15,7 @@
 @interface BLYClient () <SRWebSocketDelegate>
 
 @property (nonatomic, strong, readwrite) NSString *socketID;
+@property (nonatomic, strong, readwrite) NSURL *url;
 @property (nonatomic, weak, readwrite) id<BLYClientDelegate> delegate;
 @property (nonatomic, strong) SRWebSocket *webSocket;
 @property (nonatomic, strong) NSString *appKey;
